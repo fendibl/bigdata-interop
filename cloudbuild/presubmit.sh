@@ -24,4 +24,13 @@ cd /bigdata-interop
 ./mvnw -v
 
 # Run unit tests
-./mvnw -B -e "-P${HADOOP_PROFILE}" -DargLine="-mx3g" clean test
+if [[ ${HADOOP_PROFILE} == "hadoop2" ]]; then
+  ./mvnw -B -e "-P${HADOOP_PROFILE}" -Pcoverage -DargLine="-mx3g" clean test
+  # Upload test coverage report
+  bash <(curl -s https://codecov.io/bash)
+else
+  ./mvnw -B -e "-P${HADOOP_PROFILE}" -DargLine="-mx3g" clean test
+fi
+
+# Run integration tests
+#mvn -B -e "-P${HADOOP_PROFILE}" -Pintegration-test -DargLine="-mx3g" clean test

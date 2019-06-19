@@ -17,5 +17,16 @@ steps:
     waitFor: ['docker-build']
     entrypoint: 'bash'
     args: ['/bigdata-interop/cloudbuild/presubmit.sh', 'hadoop3']
+    env:
+    - 'CODECOV_TOKEN=$_CODECOV_TOKEN'
+    - 'VCS_BRANCH_NAME=$BRANCH_NAME'
+    - 'VCS_COMMIT_ID=$COMMIT_SHA'
+    - 'VCS_TAG=$TAG_NAME'
+    - 'CI_BUILD_ID=$BUILD_ID'
+#    - 'GCS_TEST_PROJECT_ID=$PROJECT_ID'
+#    - 'GCS_TEST_SERVICE_ACCOUNT=$_GCS_TEST_SERVICE_ACCOUNT'
+#    - 'GCS_TEST_PRIVATE_KEYFILE=$_GCS_TEST_PRIVATE_KEYFILE'
+#    - 'HDFS_ROOT=file:///tmp'
 options:
   machineType: 'N1_HIGHCPU_8'
+

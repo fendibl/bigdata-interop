@@ -51,9 +51,9 @@ commands from the main directory:
 
 ```bash
 # with Hadoop 2 and YARN support:
-./mvnw -P hadoop2 -P coverage clean verify
+./mvnw -P hadoop2 -P coverage clean test
 # with Hadoop 3 and YARN support:
-./mvnw -P hadoop3 -P coverage clean verify
+./mvnw -P hadoop3 -P coverage clean test
 ```
 
 The GCS connector JAR can be found in `gcs/target/`. The BigQuery JAR can be
