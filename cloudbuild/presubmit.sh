@@ -23,13 +23,12 @@ cd /bigdata-interop
 # Print Maven info
 ./mvnw -v
 
-# Run unit tests
+# Run all tests
+./mvnw -B -e -T1C "-P${HADOOP_PROFILE}" -Pcoverage -DargLine="-mx3g" -Dtest="*" clean test
+
+# Upload test coverage report only for Hadoop 2
 if [[ ${HADOOP_PROFILE} == "hadoop2" ]]; then
-  ./mvnw -B -e "-P${HADOOP_PROFILE}" -Pcoverage -DargLine="-mx3g" clean test
-  # Upload test coverage report
   bash <(curl -s https://codecov.io/bash)
-else
-  ./mvnw -B -e "-P${HADOOP_PROFILE}" -DargLine="-mx3g" clean test
 fi
 
 # Run integration tests
