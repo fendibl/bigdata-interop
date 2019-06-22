@@ -20,6 +20,9 @@ readonly HADOOP_PROFILE="$1"
 
 cd /bigdata-interop
 
+# Print all environment variables
+printenv
+
 # Print Maven info
 ./mvnw -v
 
